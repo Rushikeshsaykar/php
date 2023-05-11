@@ -1,0 +1,62 @@
+Write a PHP script for the following: Design a form to accept two strings. Compare the
+two strings using both methods (= = operator & strcmp function). Append second string to
+the first string. Accept the position from the user; from where the characters from the first
+string are reversed. (Use radio buttons)
+
+<?php
+if(isset($_POST['submit'])) {
+    $string1 = $_POST['string1'];
+    $string2 = $_POST['string2'];
+    $option = $_POST['option'];
+    
+    // Using == operator to compare strings
+    if($string1 == $string2) {
+        echo "Both strings are equal using == operator<br>";
+    }
+    else {
+        echo "Both strings are not equal using == operator<br>";
+    }
+    
+    // Using strcmp() function to compare strings
+    $result = strcmp($string1, $string2);
+    if($result == 0) {
+        echo "Both strings are equal using strcmp() function<br>";
+    }
+    else {
+        echo "Both strings are not equal using strcmp() function<br>";
+    }
+    
+    // Appending second string to first string
+    $newString = $string1 . $string2;
+    
+    // Reversing the characters of the first string from the selected position
+    if($option == "start") {
+        $position = 0;
+    }
+    else {
+        $position = strlen($string1) - 1;
+    }
+    
+    $firstString = substr($newString, 0, $position);
+    $reversedString = strrev(substr($newString, $position));
+    $finalString = $firstString . $reversedString;
+    
+    echo "Final string: " . $finalString;
+}
+?>
+
+<form method="POST">
+    <label for="string1">String 1:</label>
+    <input type="text" id="string1" name="string1"><br>
+    
+    <label for="string2">String 2:</label>
+    <input type="text" id="string2" name="string2"><br>
+    
+    <label for="option">Select position:</label>
+    <input type="radio" id="start" name="option" value="start" checked>
+    <label for="start">Start</label>
+    <input type="radio" id="end" name="option" value="end">
+    <label for="end">End</label><br>
+    
+    <input type="submit" name="submit" value="Submit">
+</form>

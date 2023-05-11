@@ -1,0 +1,42 @@
+Write a menu driven program to perform the following operations on an associative
+array:
+a) Display the elements of an array along with the keys.
+b) Display the size of an array
+
+
+
+
+<?php
+// define an associative array
+$myArray = array(
+	"apple" => 4,
+	"banana" => 2,
+	"orange" => 6,
+	"grape" => 3,
+	"kiwi" => 1
+);
+
+// display the menu options
+echo "MENU:\n";
+echo "1. Display the elements of the array along with the keys.\n";
+echo "2. Display the size of the array.\n";
+echo "Enter your choice: ";
+
+// read the user's choice from standard input
+$choice = readline();
+
+// perform the selected operation
+switch ($choice) {
+	case 1:
+		foreach ($myArray as $key => $value) {
+			echo "$key : $value\n";
+		}
+		break;
+	case 2:
+		echo "The size of the array is " . count($myArray) . ".\n";
+		break;
+	default:
+		echo "Invalid choice.\n";
+}
+?>
+

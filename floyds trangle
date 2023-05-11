@@ -1,0 +1,24 @@
+Write a PHP script to print following floyd’s triangle.
+1
+2 3
+4 5 6
+7 8 9 10
+
+
+<?php
+$rows = 4; // Number of rows
+
+$num = 1; // Initialize starting number
+
+// Loop through each row
+for ($i = 1; $i <= $rows; $i++) {
+  // Loop through each column in the current row
+  for ($j = 1; $j <= $i; $j++) {
+    // Print the current number and increment it
+    echo $num . " ";
+    $num++;
+  }
+  // Move to the next line after each row is printed
+  echo "<br>";
+}
+?>

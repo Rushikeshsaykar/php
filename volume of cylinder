@@ -1,0 +1,38 @@
+
+<?php
+// Define the Shape interface
+interface Shape {
+    public function area();
+    public function volume();
+}
+
+// Define the constant PI
+define("PI", 3.14);
+
+// Create the Cylinder class that implements the Shape interface
+class Cylinder implements Shape {
+    private $radius;
+    private $height;
+    
+    public function __construct($radius, $height) {
+        $this->radius = $radius;
+        $this->height = $height;
+    }
+    
+    public function area() {
+        $base_area = PI * pow($this->radius, 2);
+        $side_area = 2 * PI * $this->radius * $this->height;
+        return 2 * $base_area + $side_area;
+    }
+    
+    public function volume() {
+        $base_area = PI * pow($this->radius, 2);
+        return $base_area * $this->height;
+    }
+}
+
+// Create a Cylinder object and output its area and volume
+$cylinder = new Cylinder(5, 10);
+echo "Cylinder area: " . $cylinder->area() . "<br>";
+echo "Cylinder volume: " . $cylinder->volume() . "<br>";
+?>

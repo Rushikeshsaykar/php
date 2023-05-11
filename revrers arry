@@ -1,0 +1,28 @@
+Declare array. Reverse the order of elements, making the first element last and last
+element first and similarly rearranging other array elements.[Hint : array_reverse()]
+
+<?php
+// Declare an array of numbers
+$numbers = array(1, 2, 3, 4, 5);
+
+// Reverse the order of elements
+$reversedNumbers = array_reverse($numbers);
+
+// Rearrange the elements
+$firstElement = array_shift($reversedNumbers);
+$lastElement = array_pop($reversedNumbers);
+$rearrangedNumbers = array_merge(array($lastElement), $reversedNumbers, array($firstElement));
+
+// Print the original and rearranged arrays
+echo "Original array: ";
+print_r($numbers);
+echo "<br>";
+
+echo "Reversed array: ";
+print_r($reversedNumbers);
+echo "<br>";
+
+echo "Rearranged array: ";
+print_r($rearrangedNumbers);
+?>
+

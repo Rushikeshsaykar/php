@@ -1,0 +1,28 @@
+
+Write AJAX program to read a text file and print the contents of the file when the user
+clicks on the Print button
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Read File Using AJAX</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<button onclick="readFile()">Print</button>
+	<div id="output"></div>
+
+	<script>
+		function readFile() {
+			$.ajax({
+				url: "file.txt",
+				dataType: "text",
+				success: function(data) {
+					$("#output").text(data);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

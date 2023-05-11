@@ -1,0 +1,54 @@
+Write a PHP script to script to display time table of your class( use HTML table tags in
+echo)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Class Timetable</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<?php
+	// Define an array of days and an array of class times
+	$days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+	$class_times = array("9:00am - 10:30am", "10:45am - 12:15pm", "1:00pm - 2:30pm", "2:45pm - 4:15pm");
+	
+	// Define a multidimensional array of class names for each day and time slot
+	$classes = array(
+		array("CSE101", "MTH101", "PHY101", "BIO101"),
+		array("ENG101", "PHY101", "CSE101", "MTH101"),
+		array("MTH101", "BIO101", "ENG101", "PHY101"),
+		array("PHY101", "ENG101", "BIO101", "CSE101"),
+		array("BIO101", "CSE101", "MTH101", "ENG101")
+	);
+	
+	// Output the timetable as an HTML table
+	echo "<table>";
+	
+	// Output the table headers for the days of the week
+	echo "<tr><th></th>";
+	foreach ($days as $day) {
+		echo "<th>$day</th>";
+	}
+	echo "</tr>";
+	
+	// Output the table rows for each class time slot
+	foreach ($class_times as $time) {
+		echo "<tr><td>$time</td>";
+		foreach ($classes as $day_classes) {
+			$class_name = $day_classes[array_rand($day_classes)];
+			echo "<td>$class_name</td>";
+		}
+		echo "</tr>";
+	}
+	
+	echo "</table>";
+	?>
+</body>
+</html>

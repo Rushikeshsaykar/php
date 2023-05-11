@@ -1,0 +1,74 @@
+Write a PHP script for the following: Design a form to accept the details of 5 different
+items, such as item code, item name, units sold, rate. Display the bill in the tabular format.
+Use only 4 text boxes. (Hint : Use of explode function.)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bill Details</title>
+</head>
+<body>
+	<h1>Bill Details</h1>
+	<form method="post">
+		<table>
+			<tr>
+				<th>Item Code</th>
+				<th>Item Name</th>
+				<th>Units Sold</th>
+				<th>Rate</th>
+			</tr>
+			<?php for ($i=1; $i<=5; $i++) { ?>
+			<tr>
+				<td><input type="text" name="item<?php echo $i; ?>"/></td>
+				<td><input type="text" name="name<?php echo $i; ?>"/></td>
+				<td><input type="text" name="units<?php echo $i; ?>"/></td>
+				<td><input type="text" name="rate<?php echo $i; ?>"/></td>
+			</tr>
+			<?php } ?>
+		</table>
+		<br/>
+		<input type="submit" name="submit" value="Generate Bill"/>
+	</form>
+	<br/>
+	<?php
+	if (isset($_POST['submit'])) {
+		$items = array();
+		for ($i=1; $i<=5; $i++) {
+			$item = array();
+			$item['code'] = $_POST['item'.$i];
+			$item['name'] = $_POST['name'.$i];
+			$item['units'] = $_POST['units'.$i];
+			$item['rate'] = $_POST['rate'.$i];
+			$items[] = $item;
+		}
+		$total = 0;
+		?>
+		<table>
+			<tr>
+				<th>Item Code</th>
+				<th>Item Name</th>
+				<th>Units Sold</th>
+				<th>Rate</th>
+				<th>Total</th>
+			</tr>
+			<?php foreach ($items as $item) {
+				$itemTotal = $item['units'] * $item['rate'];
+				$total += $itemTotal;
+				?>
+				<tr>
+					<td><?php echo $item['code']; ?></td>
+					<td><?php echo $item['name']; ?></td>
+					<td><?php echo $item['units']; ?></td>
+					<td><?php echo $item['rate']; ?></td>
+					<td><?php echo $itemTotal; ?></td>
+				</tr>
+			<?php } ?>
+			<tr>
+				<td colspan="4">Total</td>
+				<td><?php echo $total; ?></td>
+			</tr>
+		</table>
+	<?php } ?>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+Declare a Multidimensional Array. Display specific element from a Multidimensional
+array. Also delete given element from the Multidimensional array.(After each operation
+display array content.) 
+
+<?php
+// Declare a multidimensional array
+$multidimensionalArray = array(
+  array("John", "Doe", "25"),
+  array("Jane", "Smith", "30"),
+  array("Bob", "Johnson", "35")
+);
+
+// Display the element in the second row, third column
+echo "Element in row 2, column 3: " . $multidimensionalArray[1][2] . "<br>";
+
+// Delete the element in the first row, second column
+unset($multidimensionalArray[0][1]);
+echo "After deleting element in row 1, column 2: <br>";
+print_r($multidimensionalArray);
+?>

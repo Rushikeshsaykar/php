@@ -1,0 +1,104 @@
+Write a PHP script to create a Class shape and its subclass triangle, square and display
+area of the selected shape.( use the concept of Inheritance) . Display menu (use radio button)
+
+Triangle
+Square
+Rectangl
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Area of Shapes</title>
+</head>
+<body>
+	<h2>Select a shape:</h2>
+	<form method="POST">
+		<input type="radio" id="triangle" name="shape" value="triangle">
+		<label for="triangle">Triangle</label><br>
+		<input type="radio" id="square" name="shape" value="square">
+		<label for="square">Square</label><br>
+		<input type="radio" id="rectangle" name="shape" value="rectangle">
+		<label for="rectangle">Rectangle</label><br>
+		<input type="submit" value="Submit">
+	</form>
+
+	<?php
+	// Define the Shape class with a method to calculate the area
+	class Shape {
+		public function area() {
+			// The area of a generic shape is undefined
+			return "undefined";
+		}
+	}
+	
+	// Define the Triangle class as a subclass of Shape
+	class Triangle extends Shape {
+		private $base;
+		private $height;
+		
+		public function __construct($base, $height) {
+			$this->base = $base;
+			$this->height = $height;
+		}
+		
+		public function area() {
+			// The area of a triangle is 1/2 * base * height
+			return 0.5 * $this->base * $this->height;
+		}
+	}
+	
+	// Define the Square class as a subclass of Shape
+	class Square extends Shape {
+		private $side;
+		
+		public function __construct($side) {
+			$this->side = $side;
+		}
+		
+		public function area() {
+			// The area of a square is side * side
+			return $this->side * $this->side;
+		}
+	}
+	
+	// Define the Rectangle class as a subclass of Shape
+	class Rectangle extends Shape {
+		private $length;
+		private $width;
+		
+		public function __construct($length, $width) {
+			$this->length = $length;
+			$this->width = $width;
+		}
+		
+		public function area() {
+			// The area of a rectangle is length * width
+			return $this->length * $this->width;
+		}
+	}
+	
+	// Check if a shape was selected and display its area
+	if (isset($_POST['shape'])) {
+		$shape = $_POST['shape'];
+		switch ($shape) {
+			case 'triangle':
+				$triangle = new Triangle(5, 10);
+				echo "<p>The area of the triangle is " . $triangle->area() . "</p>";
+				break;
+			case 'square':
+				$square = new Square(8);
+				echo "<p>The area of the square is " . $square->area() . "</p>";
+				break;
+			case 'rectangle':
+				$rectangle = new Rectangle(6, 12);
+				echo "<p>The area of the rectangle is " . $rectangle->area() . "</p>";
+				break;
+			default:
+				echo "<p>Please select a shape.</p>";
+		}
+	}
+	?>
+</body>
+</html>

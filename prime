@@ -1,0 +1,22 @@
+ Write a PHP script to check whether accepted number is prime or not.
+ 
+ 
+ <?php
+$num = 17; // example number to check for primality
+
+$isPrime = true; // assume the number is prime until proven otherwise
+
+// check if the number is divisible by any integer between 2 and its square root
+for ($i = 2; $i <= sqrt($num); $i++) {
+	if ($num % $i == 0) {
+		$isPrime = false;
+		break;
+	}
+}
+
+if ($isPrime) {
+	echo "$num is a prime number.";
+} else {
+	echo "$num is not a prime number.";
+}
+?>

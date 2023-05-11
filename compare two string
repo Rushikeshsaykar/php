@@ -1,0 +1,68 @@
+
+Write a PHP script for the following: Design a form to accept two strings. Compare the
+two strings using both methods (= = operator & strcmp function). Append second string to
+the first string. Accept the position from the user; from where the characters from the first
+string are reversed. (Use radio buttons
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String Operations</title>
+</head>
+<body>
+	<h1>String Operations</h1>
+	<form method="post">
+		<label for="string1">String 1:</label>
+		<input type="text" name="string1" required>
+		<br><br>
+		<label for="string2">String 2:</label>
+		<input type="text" name="string2" required>
+		<br><br>
+		<label>Comparison Method:</label>
+		<input type="radio" name="method" value="equal" checked> ==
+		<input type="radio" name="method" value="strcmp"> strcmp
+		<br><br>
+		<label>Reverse Position:</label>
+		<input type="number" name="reverse" min="0" max="100" value="0">
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+
+	<?php
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		$string1 = $_POST['string1'];
+		$string2 = $_POST['string2'];
+		$method = $_POST['method'];
+		$reverse = (int) $_POST['reverse'];
+
+		// Compare the two strings using the selected method
+		if ($method === 'equal') {
+			if ($string1 == $string2) {
+				echo "The two strings are equal.<br>";
+			} else {
+				echo "The two strings are not equal.<br>";
+			}
+		} else {
+			$result = strcmp($string1, $string2);
+			if ($result == 0) {
+				echo "The two strings are equal.<br>";
+			} else if ($result < 0) {
+				echo "String 1 is less than String 2.<br>";
+			} else {
+				echo "String 1 is greater than String 2.<br>";
+			}
+		}
+
+		// Append the second string to the first string
+		$string1 .= $string2;
+		echo "The concatenated string is: $string1<br>";
+
+		// Reverse a portion of the first string
+		$length = strlen($string1);
+		$end = $length - $reverse;
+		$string1 = substr($string1, 0, $reverse) . strrev(substr($string1, $reverse, $end)) . substr($string1, $end);
+		echo "The reversed string is: $string1<br>";
+	}
+	?>
+</body>
+</html>

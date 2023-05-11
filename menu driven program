@@ -1,0 +1,40 @@
+Write a menu driven program the following operation on an associative array
+a) Reverse the order of each element’s key-value pair. [Hint: array_flip()]
+b) Traverse the element in an array in random order. [Hint: shuffle()]
+
+
+<?php
+$assocArray = array("one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5); // example associative array
+
+$option = 0;
+
+while ($option != 3) {
+	echo "Menu\n";
+	echo "1. Reverse the order of each element’s key-value pair\n";
+	echo "2. Traverse the element in an array in random order\n";
+	echo "3. Exit\n";
+	$option = readline("Enter your choice: ");
+
+	switch ($option) {
+		case 1:
+			$reversedArray = array_flip($assocArray);
+			print_r($reversedArray);
+			break;
+
+		case 2:
+			shuffle($assocArray);
+			foreach ($assocArray as $key => $value) {
+				echo "$key => $value\n";
+			}
+			break;
+
+		case 3:
+			echo "Exiting...\n";
+			break;
+
+		default:
+			echo "Invalid option, please try again.\n";
+			break;
+	}
+}
+?>

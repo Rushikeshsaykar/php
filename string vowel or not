@@ -1,0 +1,64 @@
+Design a HTML form to accept a string. Write a PHP script for the following.
+a) Write a function to count the total number of Vowels from the script.
+b) Show the occurrences of each Vowel from the script
+
+html code ////////////////////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Count and Show Vowels</title>
+</head>
+<body>
+	<form method="post" action="count_vowels.php">
+		<label for="input_string">Enter a string:</label>
+		<input type="text" name="input_string" id="input_string" required>
+		<br>
+		<input type="submit" value="Count and Show Vowels">
+	</form>
+</body>
+</html>
+
+
+///////////////////////////////////php code //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$input_string = $_POST["input_string"];
+	
+	// Define an array of vowels
+	$vowels = array("a", "e", "i", "o", "u");
+	
+	// Count the total number of vowels
+	function count_vowels($string) {
+		$count = 0;
+		$letters = str_split(strtolower($string));
+		foreach ($letters as $letter) {
+			if (in_array($letter, array("a", "e", "i", "o", "u"))) {
+				$count++;
+			}
+		}
+		return $count;
+	}
+	
+	// Show the occurrences of each vowel
+	function show_vowels($string) {
+		$occurrences = array("a" => 0, "e" => 0, "i" => 0, "o" => 0, "u" => 0);
+		$letters = str_split(strtolower($string));
+		foreach ($letters as $letter) {
+			if (in_array($letter, array("a", "e", "i", "o", "u"))) {
+				$occurrences[$letter]++;
+			}
+		}
+		foreach ($occurrences as $vowel => $count) {
+			echo "Occurrences of {$vowel}: {$count}<br>";
+		}
+	}
+	
+	// Output the results
+	echo "Total number of vowels: " . count_vowels($input_string) . "<br>";
+	echo "Occurrences of each vowel:<br>";
+	show_vowels($input_string);
+}
+?>
+

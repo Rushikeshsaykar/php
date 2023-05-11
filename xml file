@@ -1,0 +1,41 @@
+
+
+Write a PHP script to following xml file.
+<cricket>
+<player> abe</player>
+<rums>100</runs>
+<wickets>20</wickets>
+</cricket>
+Store data for 5 players and display data of players who have scored more than 100 runs
+
+
+
+<?php
+
+// Read the XML file
+$xml = simplexml_load_file("cricket.xml");
+
+// Initialize an array to store the data for players
+$players = array();
+
+// Loop through the player elements in the XML file
+foreach ($xml->player as $player) {
+    // Store the data for each player in an array
+    $data = array(
+        "name" => (string) $player,
+        "runs" => (int) $player->xpath("../runs")[0],
+        "wickets" => (int) $player->xpath("../wickets")[0]
+    );
+    $players[] = $data;
+}
+
+// Display the data of players who have scored more than 100 runs
+foreach ($players as $player) {
+    if ($player["runs"] > 100) {
+        echo "Name: " . $player["name"] . "<br>";
+        echo "Runs: " . $player["runs"] . "<br>";
+        echo "Wickets: " . $player["wickets"] . "<br><br>";
+    }
+}
+
+?>

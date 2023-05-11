@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Information</title>
+</head>
+<body>
+	<?php
+	// Define a multidimensional array of student information
+	$students = array(
+		array("name" => "John Doe", "age" => 21, "major" => "Computer Science"),
+		array("name" => "Jane Smith", "age" => 20, "major" => "Mathematics"),
+		array("name" => "Bob Johnson", "age" => 22, "major" => "Physics")
+	);
+	
+	// Loop through the array and display each student's information
+	foreach ($students as $student) {
+		echo "<h2>{$student["name"]}</h2>";
+		echo "<p>Age: {$student["age"]}</p>";
+		echo "<p>Major: {$student["major"]}</p>";
+	}
+	?>
+</body>
+</html>

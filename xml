@@ -1,0 +1,36 @@
+2. Create a XML file which gives details of students admitted for different courses in Your
+College. Course names can be
+a. Arts
+b. Science
+c. Commerce
+d. Management
+Elements in each course are in following format.
+<Course>
+<Level>…</Level>
+<Intake Capacity>…</Intake Capacity>
+</Course>
+Save the file with “Course.xml”
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Courses>
+  <Course>
+    <Name>Arts</Name>
+    <Level>Bachelor's</Level>
+    <IntakeCapacity>100</IntakeCapacity>
+  </Course>
+  <Course>
+    <Name>Science</Name>
+    <Level>Bachelor's</Level>
+    <IntakeCapacity>150</IntakeCapacity>
+  </Course>
+  <Course>
+    <Name>Commerce</Name>
+    <Level>Bachelor's</Level>
+    <IntakeCapacity>120</IntakeCapacity>
+  </Course>
+  <Course>
+    <Name>Management</Name>
+    <Level>Master's</Level>
+    <IntakeCapacity>50</IntakeCapacity>
+  </Course>
+</Courses>

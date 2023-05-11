@@ -1,0 +1,39 @@
+Design a HTML form to accept a string. Write a PHP function that checks whether a
+passed string is a palindrome or not? 
+
+<!-- HTML form to accept a string -->
+<form method="post" action="">
+  <label for="string">Enter a string:</label>
+  <input type="text" id="string" name="string" required>
+  <button type="submit">Check</button>
+</form>
+
+<?php
+// Function to check whether a string is a palindrome or not
+function isPalindrome($str) {
+  // Remove all non-alphanumeric characters and convert to lowercase
+  $str = preg_replace("/[^A-Za-z0-9]/", '', strtolower($str));
+
+  // Reverse the string
+  $reversedStr = strrev($str);
+
+  // Compare the original and reversed strings
+  if ($str === $reversedStr) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Check if the form is submitted and process the input
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $inputString = $_POST["string"];
+
+  // Check if the input string is a palindrome
+  if (isPalindrome($inputString)) {
+    echo "$inputString is a palindrome";
+  } else {
+    echo "$inputString is not a palindrome";
+  }
+}
+?>
